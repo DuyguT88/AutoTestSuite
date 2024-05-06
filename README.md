@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 The selection of these particular tests for the API (Swagger Petstore) and UI (UI Testing Playground) scenarios was based on common and essential features that should be tested in any application with similar functionality. Here's the reasoning for why each of these tests was considered important:
 
 ### API Tests for Swagger Petstore
@@ -10,7 +8,7 @@ https://petstore.swagger.io/
 
 2. **Update an Existing Pet (PUT /pet)**:
    - **Importance**: Updating existing records is essential for data integrity and user satisfaction. Users must be able to update information without creating duplicate records or errors.
-   - **Use Case**: Verifies that the API handles updates by modifying only relevant fields, and that the data changes reflect immediately.
+   - **Use Case**: Verifies that the API handles updates by modifying only relevant fields and that the data changes reflect immediately.
 
 3. **Delete a Pet (DELETE /pet/{petId})**:
    - **Importance**: Deletion helps maintain data accuracy and allows users to remove obsolete records.
@@ -34,8 +32,7 @@ https://petstore.swagger.io/
 
 These tests cover a range of common scenarios that are essential to the functionality of both APIs and web interfaces. Ensuring that these areas work as intended helps detect issues early and ensures the fundamental features of an application deliver value and a consistent user experience.
 
-***********************
-Setup and Sample Code
+***Setup and Sample Code***
 1. UI Testing with Playwright
 Installation:
 
@@ -51,10 +48,3 @@ bash
 npm install
 npm install --save-dev @cucumber/cucumber axios typescript @types/node
 npm install --save-dev @cucumber/cucumber ts-node typescript chai @types/chai
-=======
-# AutoTestSuite
-UI and API Tests
->>>>>>> origin/main
-=======
-
->>>>>>> origin/main
