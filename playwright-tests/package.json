@@ -1,0 +1,23 @@
+{
+  "name": "playwright-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.43.1",
+    "@types/chai": "^4.3.16",
+    "chai": "^4.3.7",
+    "eslint": "^9.2.0",
+    "playwright": "^1.43.1",
+    "typescript": "^5.4.5"
+  }
+}
