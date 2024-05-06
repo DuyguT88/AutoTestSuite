@@ -37,14 +37,14 @@ These tests cover a range of common scenarios that are essential to the function
 Installation:
 
 bash
-npm init -y
-npm install --save-dev playwright typescript
+npm init -y,
+npm install --save-dev playwright typescript,
 npx playwright install
 
 2. API Testing with Cucumber and TypeScript
 Installation:
 
 bash
-npm install
-npm install --save-dev @cucumber/cucumber axios typescript @types/node
+npm install,
+npm install --save-dev @cucumber/cucumber axios typescript @types/node,
 npm install --save-dev @cucumber/cucumber ts-node typescript chai @types/chai
