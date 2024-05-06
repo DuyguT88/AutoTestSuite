@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 The selection of these particular tests for the API (Swagger Petstore) and UI (UI Testing Playground) scenarios was based on common and essential features that should be tested in any application with similar functionality. Here's the reasoning for why each of these tests was considered important:
 
 ### API Tests for Swagger Petstore
@@ -53,4 +54,7 @@ npm install --save-dev @cucumber/cucumber ts-node typescript chai @types/chai
 =======
 # AutoTestSuite
 UI and API Tests
+>>>>>>> origin/main
+=======
+
 >>>>>>> origin/main
