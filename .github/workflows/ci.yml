@@ -4,12 +4,16 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
+      - name: Check out the repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
@@ -17,8 +21,15 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Run Tests
-        run: npm test
+      # Step 4: Run API Tests
+      - name: Run Cucumber API Tests
+        working-directory: cucumber-api-tests
+        run: npm run test
+
+      # Step 5: Run Playwright UI Tests
+      - name: Run Playwright UI Tests
+        working-directory: playwright-tests
+        run: npm run test
