@@ -1,21 +1,9 @@
 import { Given, When, Then } from '@cucumber/cucumber';
-import axios from 'axios';
 import { expect } from 'chai';
+import PetAPI from '../api/PetAPI';
 
-const BASE_URL = "https://petstore.swagger.io/v2/pet";
 let response: any;
 
-function getAuthHeaders() {
-  const API_TOKEN = process.env.PETSTORE_API_TOKEN || 'test123*';
-  return {
-    headers: {
-      'Authorization': `Bearer ${API_TOKEN}`,
-      'Content-Type': 'application/json'
-    }
-  };
-}
-
-// Step definitions for Adding a new pet
 Given('I have valid pet data with name {string}, status {string}, and category {string}', function (name: string, status: string, category: string) {
   this.petData = {
     name: name,
@@ -27,26 +15,42 @@ Given('I have valid pet data with name {string}, status {string}, and category {
 
 When('I add the pet to the store', async function () {
   try {
-    response = await axios.post(BASE_URL, this.petData, getAuthHeaders());
+    response = await PetAPI.addPet(this.petData);
   } catch (error) {
+    console.error(`Error adding pet: ${error.message}`);
     throw new Error(`Failed to add pet: ${error.response?.statusText || error.message}`);
   }
 });
 
+
 Then('I should receive a confirmation with the new pet details', function () {
   expect(response.status).to.equal(200, `Expected response status 200 but got ${response.status}`);
-
-  // Check that each detail matches the expected data
   expect(response.data.name).to.equal(this.petData.name, `Expected pet name to be ${this.petData.name}`);
   expect(response.data.status).to.equal(this.petData.status, `Expected pet status to be ${this.petData.status}`);
   expect(response.data.category.name).to.equal(this.petData.category.name, `Expected pet category name to be ${this.petData.category.name}`);
-
-  // Ensure photo URLs are the same
   expect(response.data.photoUrls).to.be.an('array').that.is.not.empty;
   expect(response.data.photoUrls[0], 'Expected photo URL to be the same').to.equal(this.petData.photoUrls[0]);
 });
 
-// Step definitions for Deleting an existing pet
+// Assuming 'PetAPI.getPet' correctly fetches a pet by ID.
+Then('I can get the added new pet', async function () {
+  try {
+    const response = await PetAPI.getPet(this.petData.id);
+    expect(response.status).to.equal(200, `Expected status 200 but got ${response.status}`);
+
+    const expectedPet = this.petData;
+    const actualPet = response.data;
+    
+    expect(actualPet.name).to.equal(expectedPet.name, `Expected name ${expectedPet.name}`);
+    expect(actualPet.status).to.equal(expectedPet.status, `Expected status ${expectedPet.status}`);
+    expect(actualPet.category.name).to.equal(expectedPet.category.name, `Expected category ${expectedPet.category.name}`);
+    expect(actualPet.photoUrls[0]).to.equal(expectedPet.photoUrls[0], `Expected photo URL ${expectedPet.photoUrls[0]}`);
+  } catch (error) {
+    throw new Error(`Failed to get the added new pet: ${error.response?.statusText || error.message}`);
+  }
+});
+
+
 Given('I have an existing pet ID', async function () {
   const newPet = {
     name: 'Temp Pet',
@@ -56,9 +60,9 @@ Given('I have an existing pet ID', async function () {
   };
 
   try {
-    const result = await axios.post(BASE_URL, newPet, getAuthHeaders());
+    const result = await PetAPI.addPet(newPet);
     expect(result.status, 'Failed to create a new pet').to.equal(200);
-    this.petId = result.data.id;  // Store the pet ID for deletion or further testing
+    this.petId = result.data.id;
   } catch (error) {
     throw new Error(`Failed to create a pet for deletion: ${error.response?.statusText || error.message}`);
   }
@@ -66,37 +70,28 @@ Given('I have an existing pet ID', async function () {
 
 When('I delete the pet from the store', async function () {
   try {
-    const verifyResponse = await axios.get(`${BASE_URL}/${this.petId}`, getAuthHeaders());
+    const verifyResponse = await PetAPI.getPet(this.petId);
     expect(verifyResponse.status, `Failed to verify pet with ID ${this.petId}`).to.equal(200);
-    response = await axios.delete(`${BASE_URL}/${this.petId}`, getAuthHeaders());
+    response = await PetAPI.deletePet(this.petId);
   } catch (error) {
     throw new Error(`Pet with ID ${this.petId} not found or already deleted: ${error.response?.statusText || error.message}`);
   }
 });
 
 Then('I should receive a confirmation of the deletion', function () {
-  expect(response.status).to.equal(200, `Expected deletion status to be 200 but got ${response.status}`);
-});
-
-// Step definitions for Updating an existing pet
-Given('I have an existing pet with ID {int}', function (id: number) {
-  this.updatedPet = {
-    id: id,
-    name: '',
-    status: '',
-    category: { id: 11, name: '' },
-    photoUrls: ['http://example.com/photo-updated.jpg']
-  };
+  expect(response.status).to.equal(200, `Expected deletion status 200 but got ${response.status}`);
 });
 
 When('I update the pet with name {string}, status {string}, and category {string}', async function (name: string, status: string, category: string) {
-  // Update the local pet data with new values
-  this.updatedPet.name = name;
-  this.updatedPet.status = status;
-  this.updatedPet.category.name = category;
+  this.newPetData = {
+    name: name,
+    status: status,
+    category: { id: 0, name: category },
+    photoUrls: ['http://example.com/photo.jpg']
+  };
 
   try {
-    response = await axios.put(BASE_URL, this.updatedPet, getAuthHeaders());
+    response = await PetAPI.updatePet(this.newPetData);
     expect(response.status).to.equal(200, `Expected response status 200 but got ${response.status}`);
   } catch (error) {
     throw new Error(`Failed to update the pet: ${error.response?.statusText || error.message}`);

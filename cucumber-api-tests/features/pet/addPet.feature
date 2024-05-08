@@ -9,3 +9,8 @@ Feature: Add a new pet to the store
       | name   | status      | category   |
       | "Max"  | "available" | "Dogs"     |
       | "Bella"| "sold"      | "Cats"     |
+
+  Scenario: Confirming the added new pet
+    Given I have valid pet data with name "Mia", status "unavailable", and category "Dogs"
+    When I add the pet to the store
+    Then I can get the added new pet
