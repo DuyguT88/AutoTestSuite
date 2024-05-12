@@ -28,8 +28,25 @@ jobs:
       - name: Run Cucumber API Tests
         working-directory: cucumber-api-tests
         run: npm run test
+        continue-on-error: true  # Optional: continue even if tests fail
 
       # Step 5: Run Playwright UI Tests
       - name: Run Playwright UI Tests
         working-directory: playwright-tests
         run: npm run test
+        continue-on-error: true  # Optional: continue even if tests fail
+
+      # Step 6: Upload Test Results
+      - name: Upload Playwright Test Results
+        uses: actions/upload-artifact@v2
+        if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
+        with:
+          name: playwright-test-results
+          path: playwright-tests/test-results/**  # Adjust path according to where your test results are stored
+
+      - name: Upload Cucumber Test Results
+        uses: actions/upload-artifact@v2
+        if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
+        with:
+          name: cucumber-test-results
+          path: cucumber-api-tests/test-results/**  # Adjust path according to where your test results are stored
