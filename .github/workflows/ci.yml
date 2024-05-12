@@ -37,8 +37,6 @@ jobs:
         working-directory: playwright-tests
         run: |
           npm ci
-          sudo apt-get update 
-          sudo apt-get install -y libwoff1 libvpx6 libevent-2.1-7
           npx playwright install
     
       # Run Playwright UI Tests
