@@ -45,7 +45,7 @@ jobs:
         run: npm run test
         continue-on-error: true  # Optional: continue even if tests fail
 
-      # Upload Test Results
+      # Upload UI Test Results
       - name: Upload Playwright Test Results
         uses: actions/upload-artifact@v2
         if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
@@ -53,6 +53,7 @@ jobs:
           name: playwright-test-results
           path: playwright-tests/test-results/**  # Adjust path according to where your test results are stored
 
+      # Upload API Test Results
       - name: Upload Cucumber Test Results
         uses: actions/upload-artifact@v2
         if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
