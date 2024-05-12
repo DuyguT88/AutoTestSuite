@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '18'
 
       # Install dependencies for Cucumber API Tests
       - name: Install dependencies (Cucumber API Tests)
