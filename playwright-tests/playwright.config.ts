@@ -17,7 +17,7 @@ const config: PlaywrightTestConfig = {
     //['dot'],  // Simple console output
     ['json', { outputFile: 'test-results/results.json' }],  // JSON report
     ['junit', { outputFile: 'test-results/ui-test-results.xml' }],  // JUnit XML report
-    ['html', { outputFolder: 'test-results/ui-test-html-report' }]  // HTML report
+    ['html', { outputFolder: 'test-results/ui-tests-html-report' }]  // HTML report
   ]
 };
 
