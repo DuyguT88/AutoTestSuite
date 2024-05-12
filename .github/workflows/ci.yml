@@ -33,10 +33,10 @@ jobs:
         continue-on-error: true  # Optional: continue even if tests fail
 
       # Install dependencies for Playwright UI Tests
-      - name: Install dependencies (Playwright UI Tests)
+      - name: Install Playwright dependencies
         working-directory: playwright-tests
-        run: npm ci
-
+        run: npx playwright install
+    
       # Run Playwright UI Tests
       - name: Run Playwright UI Tests
         working-directory: playwright-tests
