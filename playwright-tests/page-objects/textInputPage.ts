@@ -1,18 +1,17 @@
-// textInputPage.ts (Page Object Class)
-
 import { Page } from '@playwright/test';
+import BasePage from './basePage';
+import config from '../config/config';
 
-class TextInputPage {
-  private page: Page;
+class TextInputPage extends BasePage {
   private inputSelector = '#newButtonName';
   private buttonSelector = '#updatingButton';
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
   async navigate() {
-    await this.page.goto('http://www.uitestingplayground.com/textinput');
+    await super.navigate(config.urls.textInput);
   }
 
   async fillInputField(newText: string) {

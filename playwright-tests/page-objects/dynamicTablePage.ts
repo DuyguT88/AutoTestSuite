@@ -1,18 +1,17 @@
-// dynamicTablePage.ts (Page Object Class)
-
 import { Page } from '@playwright/test';
+import BasePage from './basePage';
+import config from '../config/config';
 
-class DynamicTablePage {
-  private page: Page;
+class DynamicTablePage extends BasePage {
   private dynamicTableSelector = 'div[role="row"] >> text=Chrome';
   private chromeCpuLabelSelector = 'xpath=//p[contains(text(), "Chrome CPU:")]';
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
   async navigate() {
-    await this.page.goto('http://www.uitestingplayground.com/dynamictable');
+    await super.navigate(config.urls.dynamicTable);
   }
 
   async getChromeCpuFromTable(): Promise<string | null> {

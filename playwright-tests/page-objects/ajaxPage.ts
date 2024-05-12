@@ -1,21 +1,17 @@
-// ajaxPage.ts (Module encapsulating page interactions)
-
 import { Page } from '@playwright/test';
+import BasePage from './basePage';
+import config from '../config/config';
 
-class AjaxPage {
-  private page: Page;
-  private ajaxButtonSelector: string;
-  private contentSelector: string;
+class AjaxPage extends BasePage {
+  private ajaxButtonSelector = '#ajaxButton'
+  private contentSelector = '#content p';
 
   constructor(page: Page) {
-    this.page = page;
-    this.ajaxButtonSelector = '#ajaxButton';
-    this.contentSelector = '#content p';
+    super(page);
   }
 
-  // Navigate to the AJAX page
   async navigate() {
-    await this.page.goto('http://www.uitestingplayground.com/ajax');
+    await super.navigate(config.urls.ajax);
   }
 
   // Trigger content loading by clicking the button

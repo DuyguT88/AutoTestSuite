@@ -1,5 +1,3 @@
-// ajaxTest.spec.ts (Test file using the modular class)
-
 import { test, expect } from '@playwright/test';
 import AjaxPage from '../page-objects/ajaxPage';
 

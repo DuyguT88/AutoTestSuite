@@ -1,5 +1,3 @@
-// textInputTest.spec.ts
-
 import { test, expect } from '@playwright/test';
 import TextInputPage from '../page-objects/textInputPage';
 

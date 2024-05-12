@@ -1,5 +1,3 @@
-// dynamicTableTest.spec.ts
-
 import { test, expect } from '@playwright/test';
 import { assert } from 'chai';
 import DynamicTablePage from '../page-objects/dynamicTablePage';
