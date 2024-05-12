@@ -19,24 +19,31 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: '16'
 
-      - name: Install dependencies
+      # Install dependencies for Cucumber API Tests
+      - name: Install dependencies (Cucumber API Tests)
+        working-directory: cucumber-api-tests
         run: npm ci
-
-      # Step 4: Run API Tests
+        
+      # Run API Tests
       - name: Run Cucumber API Tests
         working-directory: cucumber-api-tests
         run: npm run test
         continue-on-error: true  # Optional: continue even if tests fail
 
-      # Step 5: Run Playwright UI Tests
+      # Run Playwright UI Tests
+      - name: Run Playwright UI Tests
+        working-directory: playwright-tests
+        run: npm run test
+
+      # Run Playwright UI Tests
       - name: Run Playwright UI Tests
         working-directory: playwright-tests
         run: npm run test
         continue-on-error: true  # Optional: continue even if tests fail
 
-      # Step 6: Upload Test Results
+      # Upload Test Results
       - name: Upload Playwright Test Results
         uses: actions/upload-artifact@v2
         if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
