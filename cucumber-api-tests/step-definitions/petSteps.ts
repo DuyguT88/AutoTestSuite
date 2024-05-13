@@ -1,8 +1,14 @@
-import { Given, When, Then } from '@cucumber/cucumber';
+import { Given, When, Then, Before } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import PetAPI from '../api/PetAPI';
 
-let response: any;
+Before(function () {
+  this.petData = null;
+  this.petId = null;
+  this.response = null;
+  this.error = null;
+  this.errorOccurred = null;
+});
 
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min); // Ensure the minimum value is rounded up
@@ -22,7 +28,7 @@ Given('I have valid pet data with name {string}, status {string}, and category {
 
 When('I add the pet to the store', async function () {
   try {
-    response = await PetAPI.addPet(this.petData);
+    this.response = await PetAPI.addPet(this.petData);
   } catch (error) {
     console.error(`Error adding pet: ${error.message}`);
     throw new Error(`Failed to add pet: ${error.response?.statusText || error.message}`);
@@ -31,12 +37,12 @@ When('I add the pet to the store', async function () {
 
 
 Then('I should receive a confirmation with the new pet details', function () {
-  expect(response.status).to.equal(200, `Expected response status 200 but got ${response.status}`);
-  expect(response.data.name).to.equal(this.petData.name, `Expected pet name to be ${this.petData.name}`);
-  expect(response.data.status).to.equal(this.petData.status, `Expected pet status to be ${this.petData.status}`);
-  expect(response.data.category.name).to.equal(this.petData.category.name, `Expected pet category name to be ${this.petData.category.name}`);
-  expect(response.data.photoUrls).to.be.an('array').that.is.not.empty;
-  expect(response.data.photoUrls[0], 'Expected photo URL to be the same').to.equal(this.petData.photoUrls[0]);
+  expect(this.response.status).to.equal(200, `Expected response status 200 but got ${this.response.status}`);
+  expect(this.response.data.name).to.equal(this.petData.name, `Expected pet name to be ${this.petData.name}`);
+  expect(this.response.data.status).to.equal(this.petData.status, `Expected pet status to be ${this.petData.status}`);
+  expect(this.response.data.category.name).to.equal(this.petData.category.name, `Expected pet category name to be ${this.petData.category.name}`);
+  expect(this.response.data.photoUrls).to.be.an('array').that.is.not.empty;
+  expect(this.response.data.photoUrls[0], 'Expected photo URL to be the same').to.equal(this.petData.photoUrls[0]);
 });
 
 Then('I can get the pet with name {string}, status {string}, and category {string}', async function (name: string, status: string, category: string) {
@@ -88,7 +94,7 @@ When('I delete the pet from the store', async function () {
 });
 
 Then('I should receive a confirmation of the deletion', function () {
-  expect(this.response.status).to.equal(200, `Expected deletion status 200 but got ${response.status}`);
+  expect(this.response.status).to.equal(200, `Expected deletion status 200 but got ${this.response.status}`);
 });
 
 Then('I cannot get the deleted pet', async function () {
@@ -113,15 +119,15 @@ When('I update the pet with name {string}, status {string}, and category {string
   };
 
   try {
-    response = await PetAPI.updatePet(this.petData);
-    expect(response.status).to.equal(200, `Expected response status 200 but got ${response.status}`);
+    this.response = await PetAPI.updatePet(this.petData);
+    expect(this.response.status).to.equal(200, `Expected response status 200 but got ${this.response.status}`);
   } catch (error) {
     throw new Error(`Failed to update the pet: ${error.response?.statusText || error.message}`);
   }
 });
 
 Then('I should receive a confirmation with the updated pet details', function () {
-  expect(response.data.name).to.equal(this.petData.name, `Expected pet name to be ${this.petData.name}`);
-  expect(response.data.status).to.equal(this.petData.status, `Expected pet status to be ${this.petData.status}`);
-  expect(response.data.category.name).to.equal(this.petData.category.name, `Expected pet category name to be ${this.petData.category.name}`);
+  expect(this.response.data.name).to.equal(this.petData.name, `Expected pet name to be ${this.petData.name}`);
+  expect(this.response.data.status).to.equal(this.petData.status, `Expected pet status to be ${this.petData.status}`);
+  expect(this.response.data.category.name).to.equal(this.petData.category.name, `Expected pet category name to be ${this.petData.category.name}`);
 });
