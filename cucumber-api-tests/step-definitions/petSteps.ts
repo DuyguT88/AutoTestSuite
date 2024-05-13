@@ -1,14 +1,7 @@
 import { Given, When, Then, Before } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import PetAPI from '../api/PetAPI';
-
-Before(function () {
-  this.petData = null;
-  this.petId = null;
-  this.response = null;
-  this.error = null;
-  this.errorOccurred = null;
-});
+import '../support/world'; 
 
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min); // Ensure the minimum value is rounded up
