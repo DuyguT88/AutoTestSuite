@@ -39,18 +39,18 @@ Then('I should receive a confirmation with the new pet details', function () {
   expect(response.data.photoUrls[0], 'Expected photo URL to be the same').to.equal(this.petData.photoUrls[0]);
 });
 
-Then('I can get the added new pet', async function () {
+Then('I can get the pet with name {string}, status {string}, and category {string}', async function (name: string, status: string, category: string) {
   try {
     const response = await PetAPI.getPet(this.petData.id);
     expect(response.status).to.equal(200, `Expected status 200 but got ${response.status}`);
 
-    const expectedPet = this.petData;
+    //const expectedPet = this.petData;
     const actualPet = response.data;
     
-    expect(actualPet.name).to.equal(expectedPet.name, `Expected name ${expectedPet.name}`);
-    expect(actualPet.status).to.equal(expectedPet.status, `Expected status ${expectedPet.status}`);
-    expect(actualPet.category.name).to.equal(expectedPet.category.name, `Expected category ${expectedPet.category.name}`);
-    expect(actualPet.photoUrls[0]).to.equal(expectedPet.photoUrls[0], `Expected photo URL ${expectedPet.photoUrls[0]}`);
+    expect(actualPet.name).to.equal(name, `Expected name ${name}`);
+    expect(actualPet.status).to.equal(status, `Expected status ${status}`);
+    expect(actualPet.category.name).to.equal(category, `Expected category ${category}`);
+    expect(actualPet.photoUrls[0]).to.equal(this.petData.photoUrls[0], `Expected photo URL ${this.petData.photoUrls[0]}`);
   } catch (error) {
     throw new Error(`Failed to get the added new pet: ${error.response?.statusText || error.message}`);
   }

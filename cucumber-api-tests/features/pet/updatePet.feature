@@ -4,7 +4,7 @@ Feature: Update an existing pet in the store
     Given I have an existing pet ID
     When I update the pet with name <name>, status <status>, and category <category>
     Then I should receive a confirmation with the updated pet details
-    And I can get the added new pet
+    And I can get the pet with name <name>, status <status>, and category <category>
 
     Examples:
       | id | name     | status      | category   |
