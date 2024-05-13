@@ -6,6 +6,7 @@ let response: any;
 
 Given('I have valid pet data with name {string}, status {string}, and category {string}', function (name: string, status: string, category: string) {
   this.petData = {
+    id: 123,
     name: name,
     status: status,
     category: { id: 11, name: category },
@@ -53,6 +54,7 @@ Then('I can get the added new pet', async function () {
 
 Given('I have an existing pet ID', async function () {
   const newPet = {
+    id: 11111,
     name: 'Temp Pet',
     status: 'available',
     category: { id: 0, name: 'Dogs' },
@@ -84,6 +86,7 @@ Then('I should receive a confirmation of the deletion', function () {
 
 When('I update the pet with name {string}, status {string}, and category {string}', async function (name: string, status: string, category: string) {
   this.newPetData = {
+    id: this.petId,
     name: name,
     status: status,
     category: { id: 0, name: category },
@@ -100,7 +103,7 @@ When('I update the pet with name {string}, status {string}, and category {string
 
 Then('I should receive a confirmation with the updated pet details', function () {
   expect(response.status).to.equal(200, `Expected update status 200 but got ${response.status}`);
-  expect(response.data.name).to.equal(this.updatedPet.name, `Expected pet name to be ${this.updatedPet.name}`);
-  expect(response.data.status).to.equal(this.updatedPet.status, `Expected pet status to be ${this.updatedPet.status}`);
-  expect(response.data.category.name).to.equal(this.updatedPet.category.name, `Expected pet category name to be ${this.updatedPet.category.name}`);
+  expect(response.data.name).to.equal(this.newPetData.name, `Expected pet name to be ${this.newPetData.name}`);
+  expect(response.data.status).to.equal(this.newPetData.status, `Expected pet status to be ${this.newPetData.status}`);
+  expect(response.data.category.name).to.equal(this.newPetData.category.name, `Expected pet category name to be ${this.newPetData.category.name}`);
 });

@@ -14,11 +14,11 @@ class PetAPI {
   }
 
   static async addPet(petData: any): Promise<AxiosResponse> {
-    return axios.post(BASE_URL, petData, PetAPI.getAuthHeaders());
+    return axios.post(BASE_URL, petData);
   }
 
   static async updatePet(petData: any): Promise<AxiosResponse> {
-    return axios.put(BASE_URL, petData, PetAPI.getAuthHeaders());
+    return axios.put(BASE_URL, petData);
   }
 
   static async deletePet(petId: number): Promise<AxiosResponse> {
@@ -26,7 +26,7 @@ class PetAPI {
   }
 
   static async getPet(petId: number): Promise<AxiosResponse> {
-    return axios.get(`${BASE_URL}/${petId}`, PetAPI.getAuthHeaders());
+    return axios.get(`${BASE_URL}/${petId}`);
   }
 }
 
