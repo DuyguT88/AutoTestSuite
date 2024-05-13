@@ -81,14 +81,26 @@ When('I delete the pet from the store', async function () {
   try {
     const verifyResponse = await PetAPI.getPet(this.petId);
     expect(verifyResponse.status, `Failed to verify pet with ID ${this.petId}`).to.equal(200);
-    response = await PetAPI.deletePet(this.petId);
+    this.response = await PetAPI.deletePet(this.petId);
   } catch (error) {
     throw new Error(`Pet with ID ${this.petId} not found or already deleted: ${error.response?.statusText || error.message}`);
   }
 });
 
 Then('I should receive a confirmation of the deletion', function () {
-  expect(response.status).to.equal(200, `Expected deletion status 200 but got ${response.status}`);
+  expect(this.response.status).to.equal(200, `Expected deletion status 200 but got ${response.status}`);
+});
+
+Then('I cannot get the deleted pet', async function () {
+  try {
+    this.response = await PetAPI.getPet(this.petId);
+  } catch (error) {
+    this.error = error;
+    this.errorOccurred = true;
+  }
+  expect(this.errorOccurred).to.be.true;
+  expect(this.error).to.have.property('message');
+  expect(this.error.message).to.include('Request failed with status code 404');
 });
 
 When('I update the pet with name {string}, status {string}, and category {string}', async function (name: string, status: string, category: string) {
