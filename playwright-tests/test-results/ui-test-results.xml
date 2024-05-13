@@ -1,0 +1,19 @@
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="19.303459999999998">
+<testsuite name="ajax_content_loading.spec.ts" timestamp="2024-05-13T10:52:00.148Z" hostname="Chromium" tests="1" failures="0" skipped="0" time="16.288" errors="0">
+<testcase name="AJAX Content Loading › should load content asynchronously" classname="ajax_content_loading.spec.ts" time="16.288">
+</testcase>
+</testsuite>
+<testsuite name="table_pagination_sorting.spec.ts" timestamp="2024-05-13T10:52:00.148Z" hostname="Chromium" tests="1" failures="0" skipped="0" time="0.466" errors="0">
+<testcase name="Dynamic Table › should find and verify the CPU usage of Chrome" classname="table_pagination_sorting.spec.ts" time="0.466">
+<system-out>
+<![CDATA[CPU usage for Chrome in the table 5.2%
+CPU usage for Chrome in the label 5.2%
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="text_input.spec.ts" timestamp="2024-05-13T10:52:00.148Z" hostname="Chromium" tests="1" failures="0" skipped="0" time="0.536" errors="0">
+<testcase name="Text Input Functionality › should enable button after text input" classname="text_input.spec.ts" time="0.536">
+</testcase>
+</testsuite>
+</testsuites>
