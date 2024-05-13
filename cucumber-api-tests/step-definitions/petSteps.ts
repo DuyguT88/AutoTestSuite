@@ -4,9 +4,15 @@ import PetAPI from '../api/PetAPI';
 
 let response: any;
 
+function getRandomInt(min: number, max: number): number {
+  min = Math.ceil(min); // Ensure the minimum value is rounded up
+  max = Math.floor(max); // Ensure the maximum value is rounded down
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 Given('I have valid pet data with name {string}, status {string}, and category {string}', function (name: string, status: string, category: string) {
   this.petData = {
-    id: 123,
+    id: getRandomInt(10, 1000),
     name: name,
     status: status,
     category: { id: 11, name: category },
@@ -33,7 +39,6 @@ Then('I should receive a confirmation with the new pet details', function () {
   expect(response.data.photoUrls[0], 'Expected photo URL to be the same').to.equal(this.petData.photoUrls[0]);
 });
 
-// Assuming 'PetAPI.getPet' correctly fetches a pet by ID.
 Then('I can get the added new pet', async function () {
   try {
     const response = await PetAPI.getPet(this.petData.id);
@@ -53,8 +58,9 @@ Then('I can get the added new pet', async function () {
 
 
 Given('I have an existing pet ID', async function () {
-  const newPet = {
-    id: 11111,
+  this.petId = getRandomInt(10, 1000);
+  const petData = {
+    id: this.petId,
     name: 'Temp Pet',
     status: 'available',
     category: { id: 0, name: 'Dogs' },
@@ -62,9 +68,10 @@ Given('I have an existing pet ID', async function () {
   };
 
   try {
-    const result = await PetAPI.addPet(newPet);
+    const result = await PetAPI.addPet(petData);
     expect(result.status, 'Failed to create a new pet').to.equal(200);
-    this.petId = result.data.id;
+    expect(result.data.id).to.equal(this.petId, `Expected pet id to be ${this.petId}`);
+
   } catch (error) {
     throw new Error(`Failed to create a pet for deletion: ${error.response?.statusText || error.message}`);
   }
@@ -85,7 +92,7 @@ Then('I should receive a confirmation of the deletion', function () {
 });
 
 When('I update the pet with name {string}, status {string}, and category {string}', async function (name: string, status: string, category: string) {
-  this.newPetData = {
+  this.petData = {
     id: this.petId,
     name: name,
     status: status,
@@ -94,7 +101,7 @@ When('I update the pet with name {string}, status {string}, and category {string
   };
 
   try {
-    response = await PetAPI.updatePet(this.newPetData);
+    response = await PetAPI.updatePet(this.petData);
     expect(response.status).to.equal(200, `Expected response status 200 but got ${response.status}`);
   } catch (error) {
     throw new Error(`Failed to update the pet: ${error.response?.statusText || error.message}`);
@@ -102,8 +109,7 @@ When('I update the pet with name {string}, status {string}, and category {string
 });
 
 Then('I should receive a confirmation with the updated pet details', function () {
-  expect(response.status).to.equal(200, `Expected update status 200 but got ${response.status}`);
-  expect(response.data.name).to.equal(this.newPetData.name, `Expected pet name to be ${this.newPetData.name}`);
-  expect(response.data.status).to.equal(this.newPetData.status, `Expected pet status to be ${this.newPetData.status}`);
-  expect(response.data.category.name).to.equal(this.newPetData.category.name, `Expected pet category name to be ${this.newPetData.category.name}`);
+  expect(response.data.name).to.equal(this.petData.name, `Expected pet name to be ${this.petData.name}`);
+  expect(response.data.status).to.equal(this.petData.status, `Expected pet status to be ${this.petData.status}`);
+  expect(response.data.category.name).to.equal(this.petData.category.name, `Expected pet category name to be ${this.petData.category.name}`);
 });
