@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js --require-module ts-node/register/transpile-only --require 'step-definitions/**/*.ts'"
+    "test": "cucumber-js --require-module ts-node/register/transpile-only --require 'step-definitions/**/*.ts' --format html:./test-results/api-tests-report.html"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,7 @@
   "devDependencies": {
     "@cucumber/cucumber": "^10.6.0",
     "@types/axios": "^0.14.0",
+    "@types/node": "^20.12.10",
     "chai": "^4.3.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"

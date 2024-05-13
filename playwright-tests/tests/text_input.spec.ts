@@ -1,19 +1,23 @@
 import { test, expect } from '@playwright/test';
+import TextInputPage from '../page-objects/textInputPage';
 
 test.describe('Text Input Functionality', () => {
   test('should enable button after text input', async ({ page }) => {
-    await page.goto('http://www.uitestingplayground.com/textinput');
+    const textInputPage = new TextInputPage(page);
 
-    // Target the text input and button
-    const inputField = page.locator('#newButtonName');
-    const button = page.locator('#updatingButton');
+    // Navigate to the text input page
+    await textInputPage.navigate();
 
-    // Verify button initially disabled or has initial text
-    await expect(button).toHaveText('Button That Should Change it\'s Name Based on Input Value');
+    // Verify initial button text
+    const initialText = await textInputPage.getButtonText();
+    expect(initialText).toBe("Button That Should Change it's Name Based on Input Value");
 
-    // Input text and verify button text changes
-    await inputField.fill('New Button Name');
-    await button.click();
-    await expect(button).toHaveText('New Button Name');
+    // Fill the input field and click the button
+    await textInputPage.fillInputField('New Button Name');
+    await textInputPage.clickButton();
+
+    // Verify button text changes
+    const updatedText = await textInputPage.getButtonText();
+    expect(updatedText).toBe('New Button Name');
   });
 });

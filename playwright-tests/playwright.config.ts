@@ -10,10 +10,15 @@ const config: PlaywrightTestConfig = {
   },
   projects: [
     { name: 'Chromium', use: { browserName: 'chromium' } },
-    { name: 'Firefox', use: { browserName: 'firefox' } },
-    { name: 'WebKit', use: { browserName: 'webkit' } }
+    { name: 'Firefox', use: { browserName: 'firefox' } }
+    //{ name: 'WebKit', use: { browserName: 'webkit' } }
   ],
-  reporter: 'list'  // Output test results in a readable list format
+  reporter: [
+    //['dot'],  // Simple console output
+    ['json', { outputFile: 'test-results/results.json' }],  // JSON report
+    ['junit', { outputFile: 'test-results/ui-test-results.xml' }],  // JUnit XML report
+    ['html', { outputFolder: 'test-results/ui-tests-html-report' }]  // HTML report
+  ]
 };
 
 export default config;

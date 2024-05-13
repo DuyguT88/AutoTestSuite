@@ -4,6 +4,7 @@ Feature: Add a new pet to the store
     Given I have valid pet data with name <name>, status <status>, and category <category>
     When I add the pet to the store
     Then I should receive a confirmation with the new pet details
+    And I can get the pet with name <name>, status <status>, and category <category>
 
     Examples:
       | name   | status      | category   |

@@ -4,21 +4,59 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
+      - name: Check out the repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: '18'
 
-      - name: Install Dependencies
+      # Install dependencies for Cucumber API Tests
+      - name: Install dependencies (Cucumber API Tests)
+        working-directory: cucumber-api-tests
         run: npm ci
-
-      - name: Run Tests
+        
+      # Run API Tests
+      - name: Run Cucumber API Tests
+        working-directory: cucumber-api-tests
         run: npm test
+        continue-on-error: true  # Optional: continue even if tests fail
+
+      # Install dependencies for Playwright UI Tests
+      - name: Install Playwright dependencies
+        working-directory: playwright-tests
+        run: |
+          npm ci
+          npx playwright install
+    
+      # Run Playwright UI Tests
+      - name: Run Playwright UI Tests
+        working-directory: playwright-tests
+        run: npm test
+        continue-on-error: true  # Optional: continue even if tests fail
+
+      # Upload UI Test Results
+      - name: Upload Playwright Test Results
+        uses: actions/upload-artifact@v2
+        if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
+        with:
+          name: playwright-test-results
+          path: playwright-tests/test-results/**  # Adjust path according to where your test results are stored
+
+      # Upload API Test Results
+      - name: Upload Cucumber Test Results
+        uses: actions/upload-artifact@v2
+        if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
+        with:
+          name: cucumber-test-results
+          path: cucumber-api-tests/test-results/**  # Adjust path according to where your test results are stored

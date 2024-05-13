@@ -5,5 +5,5 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": ["step-definitions/**/*.ts", "features/**/*.ts"]
+  "include": ["step-definitions/**/*.ts", "features/**/*.ts", "step-definitions/petSteps2.ts", "step-definitions/petSteps.ts"]
 }
