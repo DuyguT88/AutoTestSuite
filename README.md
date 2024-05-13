@@ -15,7 +15,7 @@ https://petstore.swagger.io/
    - **Use Case**: Tests whether an existing record can be safely removed from the system and confirms that the pet is no longer retrievable.
 
 ### UI Tests for UI Testing Playground
-
+http://www.uitestingplayground.com/ (UI)
 1. **Verify Text Input Functionality and Button Enablement**:
    - **Importance**: Form input and buttons are fundamental to user interactions. Testing text input ensures that the UI accepts and processes user input correctly, while button enablement ensures the logic for controlling interactive elements works as intended.
    - **Use Case**: Assures that data entry and form submission work without issues, which directly impacts usability.
