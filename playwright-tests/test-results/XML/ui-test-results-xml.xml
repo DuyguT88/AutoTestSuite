@@ -1,0 +1,36 @@
+<testsuites id="" name="" tests="6" failures="0" skipped="0" errors="0" time="23.969058999999998">
+<testsuite name="ajax_content_loading.spec.ts" timestamp="2024-05-14T14:38:58.880Z" hostname="Chromium" tests="1" failures="0" skipped="0" time="18.984" errors="0">
+<testcase name="AJAX Content Loading › should load content asynchronously" classname="ajax_content_loading.spec.ts" time="18.984">
+</testcase>
+</testsuite>
+<testsuite name="table_pagination_sorting.spec.ts" timestamp="2024-05-14T14:38:58.880Z" hostname="Chromium" tests="1" failures="0" skipped="0" time="3.315" errors="0">
+<testcase name="Dynamic Table › should find and verify the CPU usage of Chrome" classname="table_pagination_sorting.spec.ts" time="3.315">
+<system-out>
+<![CDATA[CPU usage for Chrome in the table 1.4%
+CPU usage for Chrome in the label 1.4%
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="text_input.spec.ts" timestamp="2024-05-14T14:38:58.880Z" hostname="Chromium" tests="1" failures="0" skipped="0" time="3.615" errors="0">
+<testcase name="Text Input Functionality › should enable button after text input" classname="text_input.spec.ts" time="3.615">
+</testcase>
+</testsuite>
+<testsuite name="ajax_content_loading.spec.ts" timestamp="2024-05-14T14:38:58.880Z" hostname="Firefox" tests="1" failures="0" skipped="0" time="17.331" errors="0">
+<testcase name="AJAX Content Loading › should load content asynchronously" classname="ajax_content_loading.spec.ts" time="17.331">
+</testcase>
+</testsuite>
+<testsuite name="table_pagination_sorting.spec.ts" timestamp="2024-05-14T14:38:58.880Z" hostname="Firefox" tests="1" failures="0" skipped="0" time="1.953" errors="0">
+<testcase name="Dynamic Table › should find and verify the CPU usage of Chrome" classname="table_pagination_sorting.spec.ts" time="1.953">
+<system-out>
+<![CDATA[CPU usage for Chrome in the table 2.1%
+CPU usage for Chrome in the label 2.1%
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="text_input.spec.ts" timestamp="2024-05-14T14:38:58.880Z" hostname="Firefox" tests="1" failures="0" skipped="0" time="0.896" errors="0">
+<testcase name="Text Input Functionality › should enable button after text input" classname="text_input.spec.ts" time="0.896">
+</testcase>
+</testsuite>
+</testsuites>
