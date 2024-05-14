@@ -18,19 +18,19 @@
       [
         "json",
         {
-          "outputFile": "test-results/results-json.json"
+          "outputFile": "test-results/JSON/results-json.json"
         }
       ],
       [
         "junit",
         {
-          "outputFile": "test-results/ui-test-results-xml.xml"
+          "outputFile": "test-results/XML/ui-test-results-xml.xml"
         }
       ],
       [
         "html",
         {
-          "outputFolder": "ui-tests-html-report"
+          "outputFolder": "test-results/HTML/ui-tests-html-report"
         }
       ]
     ],
@@ -102,12 +102,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 16137,
+                      "duration": 18984,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-05-14T14:28:38.316Z",
+                      "startTime": "2024-05-14T14:38:59.777Z",
                       "attachments": []
                     }
                   ],
@@ -134,12 +134,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 17137,
+                      "duration": 17331,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-05-14T14:28:40.590Z",
+                      "startTime": "2024-05-14T14:39:04.511Z",
                       "attachments": []
                     }
                   ],
@@ -183,19 +183,19 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 780,
+                      "duration": 3315,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "CPU usage for Chrome in the table 5.5%\n"
+                          "text": "CPU usage for Chrome in the table 1.4%\n"
                         },
                         {
-                          "text": "CPU usage for Chrome in the label 5.5%\n"
+                          "text": "CPU usage for Chrome in the label 1.4%\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-05-14T14:28:38.403Z",
+                      "startTime": "2024-05-14T14:38:59.863Z",
                       "attachments": []
                     }
                   ],
@@ -222,19 +222,19 @@
                     {
                       "workerIndex": 4,
                       "status": "passed",
-                      "duration": 1746,
+                      "duration": 1953,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "CPU usage for Chrome in the table 0%\n"
+                          "text": "CPU usage for Chrome in the table 2.1%\n"
                         },
                         {
-                          "text": "CPU usage for Chrome in the label 0%\n"
+                          "text": "CPU usage for Chrome in the label 2.1%\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-05-14T14:28:40.668Z",
+                      "startTime": "2024-05-14T14:39:04.643Z",
                       "attachments": []
                     }
                   ],
@@ -278,12 +278,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 890,
+                      "duration": 3615,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-05-14T14:28:38.345Z",
+                      "startTime": "2024-05-14T14:38:59.791Z",
                       "attachments": []
                     }
                   ],
@@ -310,12 +310,12 @@
                     {
                       "workerIndex": 4,
                       "status": "passed",
-                      "duration": 909,
+                      "duration": 896,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-05-14T14:28:42.998Z",
+                      "startTime": "2024-05-14T14:39:07.152Z",
                       "attachments": []
                     }
                   ],
@@ -334,8 +334,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-05-14T14:28:37.308Z",
-    "duration": 21461.908,
+    "startTime": "2024-05-14T14:38:58.770Z",
+    "duration": 24071.059,
     "expected": 6,
     "skipped": 0,
     "unexpected": 0,
