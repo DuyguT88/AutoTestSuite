@@ -48,3 +48,7 @@ bash
 npm install,
 npm install --save-dev @cucumber/cucumber axios typescript @types/node,
 npm install --save-dev @cucumber/cucumber ts-node typescript chai @types/chai
+
+***Downloading Test Result Reports in CI***
+To download test result reports in CI, begin by clicking on 'Actions.' Next, choose a specific workflow. You will find the option to download 'Artifacts' at the bottom of the workflow page.
+
