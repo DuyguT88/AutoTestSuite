@@ -1,3 +1,5 @@
+It is an automated UI and API Testing Framework, hosted on GitHub, which utilizes Typescript, Playwright, and Cucumber to offer advanced testing solutions.
+
 The selection of these particular tests for the API (Swagger Petstore) and UI (UI Testing Playground) scenarios was based on common and essential features that should be tested in any application with similar functionality. Here's the reasoning for why each of these tests was considered important:
 
 ### API Tests for Swagger Petstore
