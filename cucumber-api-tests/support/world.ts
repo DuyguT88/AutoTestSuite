@@ -6,6 +6,8 @@ class CustomWorld {
   response: any;
   error: any;
   errorOccurred: boolean;
+  username: string;
+  userData: any;
 
   constructor() {
     this.petData = null;
@@ -13,6 +15,8 @@ class CustomWorld {
     this.response = null;
     this.error = null;
     this.errorOccurred = false;
+    this.username = null;
+    this.userData = null;
   }
 }
 
