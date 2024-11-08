@@ -47,7 +47,7 @@ jobs:
 
       # Upload UI Test Results
       - name: Upload Playwright Test Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated to v3
         if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
         with:
           name: playwright-test-results
@@ -55,7 +55,7 @@ jobs:
 
       # Upload API Test Results
       - name: Upload Cucumber Test Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated to v3
         if: always()  # This ensures that the artifacts are uploaded even if the testing step fails
         with:
           name: cucumber-test-results
