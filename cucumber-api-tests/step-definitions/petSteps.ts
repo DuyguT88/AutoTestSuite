@@ -1,4 +1,4 @@
-import { Given, When, Then, Before } from '@cucumber/cucumber';
+import { Given, When, Then, After, Before} from '@cucumber/cucumber';
 import { expect } from 'chai';
 import PetService from '../services/PetService';
 import '../support/world'; 
@@ -123,4 +123,20 @@ Then('I should receive a confirmation with the updated pet details', function ()
   expect(this.response.data.name).to.equal(this.petData.name, `Expected pet name to be ${this.petData.name}`);
   expect(this.response.data.status).to.equal(this.petData.status, `Expected pet status to be ${this.petData.status}`);
   expect(this.response.data.category.name).to.equal(this.petData.category.name, `Expected pet category name to be ${this.petData.category.name}`);
+});
+
+
+Before(async function() {
+  // Setup code that runs before each scenario
+  this.petData = null;
+  this.petId = null;
+  this.response = null;
+  this.error = null;
+  this.errorOccurred = null;
+});
+
+After(async function() {
+  // Cleanup tasks after each scenario
+  // For instance, you might want to delete all test data created during the scenario.
+  PetService.deletePetIfExists(this.petId)
 });
