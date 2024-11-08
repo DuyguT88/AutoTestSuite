@@ -1,6 +1,6 @@
 import { Given, When, Then, Before } from '@cucumber/cucumber';
 import { expect } from 'chai';
-import PetAPI from '../api/PetAPI';
+import PetService from '../services/PetService';
 import '../support/world'; 
 
 function getRandomInt(min: number, max: number): number {
@@ -21,7 +21,7 @@ Given('I have valid pet data with name {string}, status {string}, and category {
 
 When('I add the pet to the store', async function () {
   try {
-    this.response = await PetAPI.addPet(this.petData);
+    this.response = await PetService.addPet(this.petData);
   } catch (error) {
     console.error(`Error adding pet: ${error.message}`);
     throw new Error(`Failed to add pet: ${error.response?.statusText || error.message}`);
@@ -40,7 +40,7 @@ Then('I should receive a confirmation with the new pet details', function () {
 
 Then('I can get the pet with name {string}, status {string}, and category {string}', async function (name: string, status: string, category: string) {
   try {
-    const response = await PetAPI.getPet(this.petData.id);
+    const response = await PetService.getPet(this.petData.id);
     expect(response.status).to.equal(200, `Expected status 200 but got ${response.status}`);
 
     //const expectedPet = this.petData;
@@ -67,7 +67,7 @@ Given('I have an existing pet ID', async function () {
   };
 
   try {
-    const result = await PetAPI.addPet(petData);
+    const result = await PetService.addPet(petData);
     expect(result.status, 'Failed to create a new pet').to.equal(200);
     expect(result.data.id).to.equal(this.petId, `Expected pet id to be ${this.petId}`);
 
@@ -78,9 +78,9 @@ Given('I have an existing pet ID', async function () {
 
 When('I delete the pet from the store', async function () {
   try {
-    const verifyResponse = await PetAPI.getPet(this.petId);
+    const verifyResponse = await PetService.getPet(this.petId);
     expect(verifyResponse.status, `Failed to verify pet with ID ${this.petId}`).to.equal(200);
-    this.response = await PetAPI.deletePet(this.petId);
+    this.response = await PetService.deletePet(this.petId);
   } catch (error) {
     throw new Error(`Pet with ID ${this.petId} not found or already deleted: ${error.response?.statusText || error.message}`);
   }
@@ -92,7 +92,7 @@ Then('I should receive a confirmation of the deletion', function () {
 
 Then('I cannot get the deleted pet', async function () {
   try {
-    this.response = await PetAPI.getPet(this.petId);
+    this.response = await PetService.getPet(this.petId);
   } catch (error) {
     this.error = error;
     this.errorOccurred = true;
@@ -112,7 +112,7 @@ When('I update the pet with name {string}, status {string}, and category {string
   };
 
   try {
-    this.response = await PetAPI.updatePet(this.petData);
+    this.response = await PetService.updatePet(this.petData);
     expect(this.response.status).to.equal(200, `Expected response status 200 but got ${this.response.status}`);
   } catch (error) {
     throw new Error(`Failed to update the pet: ${error.response?.statusText || error.message}`);

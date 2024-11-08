@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 
 const BASE_URL = "https://petstore.swagger.io/v2/pet";
 
-class PetAPI {
+class PetService {
   private static getAuthHeaders() {
     const API_TOKEN = process.env.PETSTORE_API_TOKEN || 'test123*';
     return {
@@ -22,7 +22,7 @@ class PetAPI {
   }
 
   static async deletePet(petId: number): Promise<AxiosResponse> {
-    return axios.delete(`${BASE_URL}/${petId}`, PetAPI.getAuthHeaders());
+    return axios.delete(`${BASE_URL}/${petId}`, PetService.getAuthHeaders());
   }
 
   static async getPet(petId: number): Promise<AxiosResponse> {
@@ -30,4 +30,4 @@ class PetAPI {
   }
 }
 
-export default PetAPI;
+export default PetService;
