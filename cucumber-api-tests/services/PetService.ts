@@ -1,28 +1,29 @@
-// PetService.ts
 import axios, { AxiosResponse } from 'axios';
-import { getAuthHeaders, handleRequest } from '../utils'; // Import getAuthHeaders and handleRequest
+import { getAuthHeaders, handleRequest } from '../utils';
+import CONFIG from '../config'; // Import configuration
 
-const BASE_URL = "https://petstore.swagger.io/v2/pet";
+const { BASE_URL } = CONFIG; // Destructure BASE_URL
+const PET_API_PATH = `${BASE_URL}/pet`; // Define a reusable endpoint path
 
 class PetService {
   static async addPet(petData: any): Promise<AxiosResponse> {
-    const request = axios.post(BASE_URL, petData, getAuthHeaders());
-    return handleRequest(request); // Use handleRequest from utils
+    const request = axios.post(PET_API_PATH, petData, getAuthHeaders());
+    return handleRequest(request);
   }
 
   static async updatePet(petData: any): Promise<AxiosResponse> {
-    const request = axios.put(BASE_URL, petData, getAuthHeaders());
-    return handleRequest(request); // Use handleRequest from utils
+    const request = axios.put(PET_API_PATH, petData, getAuthHeaders());
+    return handleRequest(request);
   }
 
   static async deletePet(petId: number): Promise<AxiosResponse> {
-    const request = axios.delete(`${BASE_URL}/${petId}`, getAuthHeaders());
-    return handleRequest(request); // Use handleRequest from utils
+    const request = axios.delete(`${PET_API_PATH}/${petId}`, getAuthHeaders());
+    return handleRequest(request);
   }
 
   static async getPet(petId: number): Promise<AxiosResponse> {
-    const request = axios.get(`${BASE_URL}/${petId}`, getAuthHeaders());
-    return handleRequest(request); // Use handleRequest from utils
+    const request = axios.get(`${PET_API_PATH}/${petId}`, getAuthHeaders());
+    return handleRequest(request);
   }
 }
 

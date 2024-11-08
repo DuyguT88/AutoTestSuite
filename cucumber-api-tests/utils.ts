@@ -1,13 +1,14 @@
 import { AxiosResponse } from 'axios';
+import CONFIG from './config'; // Import configuration
+
 
 export const getAuthHeaders = () => {
-    const API_TOKEN = process.env.PETSTORE_API_TOKEN || 'test123*';
-    if (!API_TOKEN) {
+    if (!CONFIG.API_TOKEN) {
       throw new Error('API token is required');
     }
     return {
       headers: {
-        'Authorization': `Bearer ${API_TOKEN}`,
+        'Authorization': `Bearer ${CONFIG.API_TOKEN}`,
         'Content-Type': 'application/json',
       },
     };
