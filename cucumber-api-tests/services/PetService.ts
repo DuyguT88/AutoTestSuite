@@ -1,32 +1,28 @@
+// PetService.ts
 import axios, { AxiosResponse } from 'axios';
+import { getAuthHeaders, handleRequest } from '../utils'; // Import getAuthHeaders and handleRequest
 
 const BASE_URL = "https://petstore.swagger.io/v2/pet";
 
 class PetService {
-  private static getAuthHeaders() {
-    const API_TOKEN = process.env.PETSTORE_API_TOKEN || 'test123*';
-    return {
-      headers: {
-        'Authorization': `Bearer ${API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-    };
-  }
-
   static async addPet(petData: any): Promise<AxiosResponse> {
-    return axios.post(BASE_URL, petData);
+    const request = axios.post(BASE_URL, petData, getAuthHeaders());
+    return handleRequest(request); // Use handleRequest from utils
   }
 
   static async updatePet(petData: any): Promise<AxiosResponse> {
-    return axios.put(BASE_URL, petData);
+    const request = axios.put(BASE_URL, petData, getAuthHeaders());
+    return handleRequest(request); // Use handleRequest from utils
   }
 
   static async deletePet(petId: number): Promise<AxiosResponse> {
-    return axios.delete(`${BASE_URL}/${petId}`, PetService.getAuthHeaders());
+    const request = axios.delete(`${BASE_URL}/${petId}`, getAuthHeaders());
+    return handleRequest(request); // Use handleRequest from utils
   }
 
   static async getPet(petId: number): Promise<AxiosResponse> {
-    return axios.get(`${BASE_URL}/${petId}`);
+    const request = axios.get(`${BASE_URL}/${petId}`, getAuthHeaders());
+    return handleRequest(request); // Use handleRequest from utils
   }
 }
 
