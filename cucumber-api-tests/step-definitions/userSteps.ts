@@ -100,7 +100,7 @@ Then('I should not be able to find the user', async function () {
   try {
     await UserService.getUser(this.username);
   } catch (error) {
-    expect(error.response.status).to.equal(404, 'Expected user to be not found (404)');
+    expect(error.message).to.include("Request failed with status code 404", `Expected error message to contain "Request failed with status code 404", but got: ${error.message}`);
   }
 });
 

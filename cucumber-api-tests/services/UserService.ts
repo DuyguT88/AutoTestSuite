@@ -21,7 +21,7 @@ class UserService {
 
   // Method to delete a user by username
   static async deleteUser(username: string): Promise<AxiosResponse> {
-    const request = axios.delete(`${USER_API_PATH}/${username}`, ApiUtils.getAuthHeaders());
+    const request = axios.delete(`${USER_API_PATH}/${username}`);
     return ApiUtils.handleRequest(request);
   }
 

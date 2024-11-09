@@ -4,6 +4,7 @@ Feature: User Service API operations
     Given I have user data with username "john_doe", first name "John", last name "Doe"
     When I create the user
     Then I should receive a 200 status code
+    And I retrieve the user details
     And the user data should include username "john_doe" and email matching "john_doe.*@example.com"
 
   Scenario: Updating the user's email
@@ -11,6 +12,7 @@ Feature: User Service API operations
     When I create the user
     And I update the user with new email "john_doe_new@example.com"
     Then I should receive a 200 status code
+    And I retrieve the user details
     And the user data should include username "john_doe" and email "john_doe_new@example.com"
 
   Scenario: Retrieving the user details
