@@ -22,4 +22,4 @@ const config: PlaywrightTestConfig = {
   ]
 };
 
-export default config;W
+export default config;
