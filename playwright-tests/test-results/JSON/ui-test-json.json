@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "C:\\Users\\duygu\\OneDrive\\Documents\\UI_and_API_tests_with_TypeScript\\playwright-tests\\playwright.config.ts",
-    "rootDir": "C:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/tests",
+    "configFile": "c:\\Users\\duygu\\OneDrive\\Documents\\UI_and_API_tests_with_TypeScript\\playwright-tests\\playwright.config.ts",
+    "rootDir": "c:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/tests",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 3
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "reporter": [
@@ -41,12 +41,12 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "C:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/test-results",
+        "outputDir": "c:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "id": "Chromium",
         "name": "Chromium",
-        "testDir": "C:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/tests",
+        "testDir": "c:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.spec.ts"
@@ -54,12 +54,12 @@
         "timeout": 30000
       },
       {
-        "outputDir": "C:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/test-results",
+        "outputDir": "c:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "id": "Firefox",
         "name": "Firefox",
-        "testDir": "C:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/tests",
+        "testDir": "c:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.spec.ts"
@@ -67,12 +67,12 @@
         "timeout": 30000
       },
       {
-        "outputDir": "C:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/test-results",
+        "outputDir": "c:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "id": "WebKit",
         "name": "WebKit",
-        "testDir": "C:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/tests",
+        "testDir": "c:/Users/duygu/OneDrive/Documents/UI_and_API_tests_with_TypeScript/playwright-tests/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.spec.ts"
@@ -83,7 +83,7 @@
     "shard": null,
     "updateSnapshots": "missing",
     "version": "1.43.1",
-    "workers": 3,
+    "workers": 1,
     "webServer": null
   },
   "suites": [
@@ -115,12 +115,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 16738,
+                      "duration": 16471,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-11-10T20:17:18.670Z",
+                      "startTime": "2024-11-10T20:57:40.895Z",
                       "attachments": []
                     }
                   ],
@@ -128,70 +128,6 @@
                 }
               ],
               "id": "a65288c01e0d38aebbeb-0567a0dedf70db3141b4",
-              "file": "ajax_content_loading.spec.ts",
-              "line": 5,
-              "column": 7
-            },
-            {
-              "title": "should load content asynchronously",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "Firefox",
-                  "projectName": "Firefox",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "status": "passed",
-                      "duration": 17847,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-11-10T20:17:21.094Z",
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "a65288c01e0d38aebbeb-6255cd4969e5bb11cc1e",
-              "file": "ajax_content_loading.spec.ts",
-              "line": 5,
-              "column": 7
-            },
-            {
-              "title": "should load content asynchronously",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "WebKit",
-                  "projectName": "WebKit",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "status": "passed",
-                      "duration": 16799,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-11-10T20:17:27.322Z",
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "a65288c01e0d38aebbeb-a90a18468cbf1c2377f8",
               "file": "ajax_content_loading.spec.ts",
               "line": 5,
               "column": 7
@@ -226,21 +162,21 @@
                   "projectName": "Chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 1060,
+                      "duration": 734,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "CPU usage for Chrome in the table 1.2%\n"
+                          "text": "CPU usage for Chrome in the table 2.8%\n"
                         },
                         {
-                          "text": "CPU usage for Chrome in the label 1.2%\n"
+                          "text": "CPU usage for Chrome in the label 2.8%\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-11-10T20:17:18.723Z",
+                      "startTime": "2024-11-10T20:57:58.131Z",
                       "attachments": []
                     }
                   ],
@@ -248,84 +184,6 @@
                 }
               ],
               "id": "aa9096ce7e3947878957-7176b3b10147e40d96c2",
-              "file": "table_pagination_sorting.spec.ts",
-              "line": 6,
-              "column": 7
-            },
-            {
-              "title": "should find and verify the CPU usage of Chrome",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "Firefox",
-                  "projectName": "Firefox",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "status": "passed",
-                      "duration": 2451,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "CPU usage for Chrome in the table 6.1%\n"
-                        },
-                        {
-                          "text": "CPU usage for Chrome in the label 6.1%\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-11-10T20:17:21.188Z",
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "aa9096ce7e3947878957-b1b7dbde688a1a27ca6b",
-              "file": "table_pagination_sorting.spec.ts",
-              "line": 6,
-              "column": 7
-            },
-            {
-              "title": "should find and verify the CPU usage of Chrome",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "WebKit",
-                  "projectName": "WebKit",
-                  "results": [
-                    {
-                      "workerIndex": 6,
-                      "status": "passed",
-                      "duration": 976,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "CPU usage for Chrome in the table 0.5%\n"
-                        },
-                        {
-                          "text": "CPU usage for Chrome in the label 0.5%\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-11-10T20:17:37.067Z",
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "aa9096ce7e3947878957-0a620d7a6990f0b2b113",
               "file": "table_pagination_sorting.spec.ts",
               "line": 6,
               "column": 7
@@ -360,14 +218,14 @@
                   "projectName": "Chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 961,
+                      "duration": 659,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-11-10T20:17:18.670Z",
+                      "startTime": "2024-11-10T20:57:58.889Z",
                       "attachments": []
                     }
                   ],
@@ -375,70 +233,6 @@
                 }
               ],
               "id": "9925cd6edbe3e6f321cb-364ef7af83b3f133ce69",
-              "file": "text_input.spec.ts",
-              "line": 5,
-              "column": 7
-            },
-            {
-              "title": "should enable button after text input",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "Firefox",
-                  "projectName": "Firefox",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "status": "passed",
-                      "duration": 1033,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-11-10T20:17:24.241Z",
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "9925cd6edbe3e6f321cb-81bcf9e5713ec16dfc00",
-              "file": "text_input.spec.ts",
-              "line": 5,
-              "column": 7
-            },
-            {
-              "title": "should enable button after text input",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "WebKit",
-                  "projectName": "WebKit",
-                  "results": [
-                    {
-                      "workerIndex": 6,
-                      "status": "passed",
-                      "duration": 1229,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-11-10T20:17:38.169Z",
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "9925cd6edbe3e6f321cb-2faea6511f2aadb3cd9a",
               "file": "text_input.spec.ts",
               "line": 5,
               "column": 7
@@ -450,9 +244,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-11-10T20:17:17.499Z",
-    "duration": 27013.339,
-    "expected": 9,
+    "startTime": "2024-11-10T20:57:38.832Z",
+    "duration": 26455.335,
+    "expected": 3,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test';
-import BasePage from './basePage';
+import BasePage from './base/basePage';
 import config from '../config/config';
 
 class DynamicTablePage extends BasePage {

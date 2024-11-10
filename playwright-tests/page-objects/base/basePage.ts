@@ -10,6 +10,10 @@ class BasePage {
   async navigate(url: string) {
     await this.page.goto(url);
   }
+
+  async getText(locator: string) : Promise<string | null>  {
+    return await this.page.textContent(locator);
+  }
 }
 
 export default BasePage;

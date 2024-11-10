@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test';
-import BasePage from './basePage';
+import BasePage from './base/basePage';
 import config from '../config/config';
 
 class TextInputPage extends BasePage {
@@ -18,12 +18,12 @@ class TextInputPage extends BasePage {
     await this.page.fill(this.inputSelector, newText);
   }
 
-  async clickButton() {
+  async clickUpdatingButton() {
     await this.page.click(this.buttonSelector);
   }
 
   async getButtonText(): Promise<string | null> {
-    return await this.page.textContent(this.buttonSelector);
+    return super.getText(this.buttonSelector);
   }
 }
 

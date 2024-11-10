@@ -14,7 +14,7 @@ test.describe('Text Input Functionality', () => {
 
     // Fill the input field and click the button
     await textInputPage.fillInputField('New Button Name');
-    await textInputPage.clickButton();
+    await textInputPage.clickUpdatingButton();
 
     // Verify button text changes
     const updatedText = await textInputPage.getButtonText();
