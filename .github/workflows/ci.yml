@@ -53,6 +53,13 @@ jobs:
           name: playwright-test-results
           path: playwright-tests/test-results/**  # Adjust path according to where your test results are stored
 
+      - name: Upload Playwright HTML Report
+        uses: actions/upload-artifact@v3
+        if: always()  # Ensures HTML report is uploaded even if tests fail
+        with:
+           name: playwright-html-report
+           path: playwright-tests/ui-tests-html-report/**  # Adjust the path where HTML report is stored
+
       # Upload API Test Results
       - name: Upload Cucumber Test Results
         uses: actions/upload-artifact@v3  # Updated to v3
