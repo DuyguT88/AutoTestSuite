@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import ApiUtils from './ApiUtils';
 import CONFIG from '../config'; 
 
-const { BASE_URL } = CONFIG;
+const BASE_URL = CONFIG.BASE_URL;
 const PET_API_PATH = `${BASE_URL}/pet`;
 
 class PetService{
