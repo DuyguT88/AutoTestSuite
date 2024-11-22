@@ -88,8 +88,8 @@ jobs:
               echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
 
       - name: UI Test Summary from JSON Results
-      if: always()
-      run: |
+        if: always()
+        run: |
                 # Define the path to the test results JSON file
                 TEST_RESULTS_JSON="./playwright-tests/test-results/JSON/ui-test-json.json"
             
