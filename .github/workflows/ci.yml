@@ -86,44 +86,4 @@ jobs:
               echo "| Passed | Failed |" >> $GITHUB_STEP_SUMMARY
               echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
               echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
-            
-      - name: UI Test Summary from JSON Results
-        if: always()
-        run: |
-             # Define the JSON file path
-                  TEST_RESULTS_JSON="./playwright-tests/test-results/JSON/ui-test-json.json"
-              
-                  # Check if the JSON file exists
-                  if [ ! -f "$TEST_RESULTS_JSON" ]; then
-                    echo "Test results JSON file not found." >> $GITHUB_STEP_SUMMARY
-                    exit 1
-                  fi
-              
-                  # Start the summary
-                  echo "### Test API Results Summary" >> $GITHUB_STEP_SUMMARY
-              
-                  # Parse the JSON to extract features, scenarios, steps, and statuses
-                  jq -r '
-                  .suites[] |
-                  (.suites[] | 
-                    "## Feature: " + (.title | tostring) + "\n" +
-                    (.specs[] |
-                      "### Scenario: " + (.title | tostring) + "\n" +
-                      "| Step | Result |\n" +
-                      "|------|--------|\n" +
-                      (.tests[] |
-                        .results[0].steps[]? |
-                        "| " + (.title | tostring) + " | " + (.status | tostring) + " |") +
-                      "\n")
-                  )' $TEST_RESULTS_JSON >> $GITHUB_STEP_SUMMARY
-              
-                  # Calculate passed and failed counts
-                  PASS_COUNT=$(jq '[.suites[].suites[].specs[].tests[] | select(.results[0].status == "passed")] | length' $TEST_RESULTS_JSON)
-                  FAIL_COUNT=$(jq '[.suites[].suites[].specs[].tests[] | select(.results[0].status == "failed")] | length' $TEST_RESULTS_JSON)
-              
-                  # Append overall test outcome
-                  echo "### Test Outcome" >> $GITHUB_STEP_SUMMARY
-                  echo "| Passed | Failed |" >> $GITHUB_STEP_SUMMARY
-                  echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
-                  echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
-                     
+                
