@@ -82,47 +82,48 @@ jobs:
               PASS_COUNT=$(jq '[.[] | .elements[] | select(all(.steps[]; .result.status == "passed"))] | length' ./cucumber-api-tests/test-results/api-tests-report.json)
               FAIL_COUNT=$(jq '[.[] | .elements[] | select(any(.steps[]; .result.status == "failed"))] | length' ./cucumber-api-tests/test-results/api-tests-report.json)
               
-              echo "Test Outcome" >> $GITHUB_STEP_SUMMARY
+              echo "API Test Outcome" >> $GITHUB_STEP_SUMMARY
               echo "| Passed | Failed |" >> $GITHUB_STEP_SUMMARY
               echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
               echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
-
+            
       - name: UI Test Summary from JSON Results
         if: always()
         run: |
-                # Define the path to the test results JSON file
-                TEST_RESULTS_JSON="./playwright-tests/test-results/JSON/ui-test-json.json"
-            
-                # Check if the JSON file exists
-                if [ ! -f "$TEST_RESULTS_JSON" ]; then
-                  echo "Test results JSON file not found at $TEST_RESULTS_JSON" >> $GITHUB_STEP_SUMMARY
-                  exit 1
-                fi
-            
-                # Count passed and failed tests
-                PASS_COUNT=$(jq '[.suites[].specs[].tests[] | select(.results[0].status == "passed")] | length' $TEST_RESULTS_JSON)
-                FAIL_COUNT=$(jq '[.suites[].specs[].tests[] | select(.results[0].status == "failed")] | length' $TEST_RESULTS_JSON)
-            
-                # Write the summary header
-                echo "### Test Results Summary" >> $GITHUB_STEP_SUMMARY
-            
-                # Append passed/failed test counts
-                echo "| Passed | Failed |" >> $GITHUB_STEP_SUMMARY
-                echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
-                echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
-            
-                # Append detailed results
-                echo "## Detailed Results" >> $GITHUB_STEP_SUMMARY
-                jq -r '
-                .suites[] |
-                "### Feature: " + (.title | tostring) + "\n" +
-                (.specs[] |
-                  (.tests[] |
-                    "#### Scenario: " + (.title | tostring) + "\n" +
-                    "| Step | Result |\n" +
-                    "|------|--------|\n" +
-                    (.results[0].steps | map("| " + (.title | tostring) + " | " + (.status | tostring) + " |") | join("\n"))
-                  )
-                ) + "\n"' $TEST_RESULTS_JSON >> $GITHUB_STEP_SUMMARY
-            
-        
+             # Define the JSON file path
+                  TEST_RESULTS_JSON="./playwright-tests/test-results/JSON/ui-test-json.json"
+              
+                  # Check if the JSON file exists
+                  if [ ! -f "$TEST_RESULTS_JSON" ]; then
+                    echo "Test results JSON file not found." >> $GITHUB_STEP_SUMMARY
+                    exit 1
+                  fi
+              
+                  # Start the summary
+                  echo "### Test API Results Summary" >> $GITHUB_STEP_SUMMARY
+              
+                  # Parse the JSON to extract features, scenarios, steps, and statuses
+                  jq -r '
+                  .suites[] |
+                  (.suites[] | 
+                    "## Feature: " + (.title | tostring) + "\n" +
+                    (.specs[] |
+                      "### Scenario: " + (.title | tostring) + "\n" +
+                      "| Step | Result |\n" +
+                      "|------|--------|\n" +
+                      (.tests[] |
+                        .results[0].steps[]? |
+                        "| " + (.title | tostring) + " | " + (.status | tostring) + " |") +
+                      "\n")
+                  )' $TEST_RESULTS_JSON >> $GITHUB_STEP_SUMMARY
+              
+                  # Calculate passed and failed counts
+                  PASS_COUNT=$(jq '[.suites[].suites[].specs[].tests[] | select(.results[0].status == "passed")] | length' $TEST_RESULTS_JSON)
+                  FAIL_COUNT=$(jq '[.suites[].suites[].specs[].tests[] | select(.results[0].status == "failed")] | length' $TEST_RESULTS_JSON)
+              
+                  # Append overall test outcome
+                  echo "### Test Outcome" >> $GITHUB_STEP_SUMMARY
+                  echo "| Passed | Failed |" >> $GITHUB_STEP_SUMMARY
+                  echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
+                  echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
+                     
