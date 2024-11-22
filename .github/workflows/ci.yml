@@ -82,7 +82,26 @@ jobs:
               PASS_COUNT=$(jq '[.[] | .elements[] | select(all(.steps[]; .result.status == "passed"))] | length' ./cucumber-api-tests/test-results/api-tests-report.json)
               FAIL_COUNT=$(jq '[.[] | .elements[] | select(any(.steps[]; .result.status == "failed"))] | length' ./cucumber-api-tests/test-results/api-tests-report.json)
               
-              echo "\n### Test Outcome" >> $GITHUB_STEP_SUMMARY
+              echo "Test Outcome" >> $GITHUB_STEP_SUMMARY
+              echo "| Passed | Failed |" >> $GITHUB_STEP_SUMMARY
+              echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
+              echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Create Markdown UI Test Summary from JSON Results
+        if: always()
+        run: |
+              echo "### Test API Results Summary" > $GITHUB_STEP_SUMMARY
+              jq -r '.[] | "## Feature: " + (.name | tostring) + "\n" + 
+                (.elements[] | 
+                  "### Scenario: " + (.name | tostring) + "\n" +
+                  "| Step | Result |\n" + 
+                  (.steps | map(select(.keyword != "Before" and .keyword != "After") | 
+                  "| " + (.keyword | tostring) + " " + (.name | tostring) + " | " + (.result.status | tostring) + " |") | join("\n")) + "\n\n")' ./playwright-tests/test-results/JSON/ui-test-json.json >> $GITHUB_STEP_SUMMARY
+                    
+              PASS_COUNT=$(jq '[.[] | .elements[] | select(all(.steps[]; .result.status == "passed"))] | length' ./playwright-tests/test-results/JSON/ui-test-json.json)
+              FAIL_COUNT=$(jq '[.[] | .elements[] | select(any(.steps[]; .result.status == "failed"))] | length' ./playwright-tests/test-results/JSON/ui-test-json.json)
+                    
+              echo "Test Outcome" >> $GITHUB_STEP_SUMMARY
               echo "| Passed | Failed |" >> $GITHUB_STEP_SUMMARY
               echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
               echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
