@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js --require-module ts-node/register/transpile-only --require 'step-definitions/**/*.ts' --format html:./test-results/api-tests-report.html"
+    "test": "cucumber-js --require-module ts-node/register/transpile-only --require 'step-definitions/**/*.ts' --format html:./test-results/api-tests-report.html --format json:./test-results/api-tests-report.json"
   },
   "keywords": [],
   "author": "",

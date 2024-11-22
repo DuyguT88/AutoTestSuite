@@ -67,3 +67,22 @@ jobs:
         with:
           name: cucumber-test-results
           path: cucumber-api-tests/test-results/**  # Adjust path according to where your test results are stored
+
+      - name: Create Markdown API Test Summary from JSON Results
+        if: always()
+        run: |
+              echo "### Test API Results Summary" > $GITHUB_STEP_SUMMARY
+              jq -r '.[] | "## Feature: " + (.name | tostring) + "\n" + 
+                (.elements[] | 
+                  "### Scenario: " + (.name | tostring) + "\n" +
+                  "| Step | Result |\n" + 
+                  (.steps | map(select(.keyword != "Before" and .keyword != "After") | 
+                  "| " + (.keyword | tostring) + " " + (.name | tostring) + " | " + (.result.status | tostring) + " |") | join("\n")) + "\n\n")' ./cucumber-api-tests/test-results/api-tests-report.json >> $GITHUB_STEP_SUMMARY
+              
+              PASS_COUNT=$(jq '[.[] | .elements[] | select(all(.steps[]; .result.status == "passed"))] | length' ./cucumber-api-tests/test-results/api-tests-report.json)
+              FAIL_COUNT=$(jq '[.[] | .elements[] | select(any(.steps[]; .result.status == "failed"))] | length' ./cucumber-api-tests/test-results/api-tests-report.json)
+              
+              echo "\n### Test Outcome" >> $GITHUB_STEP_SUMMARY
+              echo "| Passed | Failed |" >> $GITHUB_STEP_SUMMARY
+              echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
+              echo "| $PASS_COUNT | $FAIL_COUNT |" >> $GITHUB_STEP_SUMMARY
